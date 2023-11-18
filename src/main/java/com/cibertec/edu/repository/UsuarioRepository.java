@@ -6,7 +6,8 @@ import com.cibertec.edu.entity.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
-	Usuario findByCorreoAndClave(String correo, String clave);
-	Usuario findByCorreo(String correo);
+	public Usuario findByCorreoAndClave(String correo, String clave);
+	public Usuario findByCorreo(String correo);
+	public boolean existsByCorreo(String correo);
 
 }
