@@ -24,5 +24,26 @@ public class RecetaServiceImpl implements com.cibertec.edu.services.RecetaServic
 		return repo.listarRecetasFavoritasPorUsuario(cod);
 	}
 
+	@Override
+	public Receta registrar(Receta receta) {
+		return repo.save(receta);
+	}
+
+	@Override
+	public Receta actualizar(Receta receta) {
+		return repo.save(receta);
+	}
+
+	@Override
+	public void eliminar(Integer cod) {
+		repo.deleteById(cod);
+		
+	}
+
+	@Override
+	public Receta BuscarPorId(Integer cod) {
+		return repo.findById(cod).orElse(null);
+	}
+
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,6 +52,30 @@ public class UsuarioController {
             return new ResponseEntity<>("Error al registrar el usuario.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Usuario bean) {
+	    try {
+	        Usuario usuarioExistente = servicioUsuario.buscarPorID(id);
+
+	        if (usuarioExistente == null) {
+	            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+	        }
+
+	        usuarioExistente.setNombre(bean.getNombre());
+	        usuarioExistente.setApellido(bean.getApellido());
+	        if (bean.getClave() != null) {
+	            usuarioExistente.setClave(bean.getClave());
+	        }
+
+	        Usuario usuarioActualizado = servicioUsuario.actualizar(usuarioExistente);
+
+	        return new ResponseEntity<>(usuarioActualizado, HttpStatus.OK);
+	    } catch (Exception e) {
+	        return new ResponseEntity<>("Error al actualizar el usuario.", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	}
+
 
 
 }

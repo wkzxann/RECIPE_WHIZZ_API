@@ -46,10 +46,17 @@ public class UsuarioServiceImpl implements UsuarioService {
         return repo.save(usuario);
 	}
 	
+	@Override
+	public Usuario actualizar(Usuario usuario) {
+		return repo.save(usuario);
+	}
+	
 	private void validarDuplicados(Usuario usuario) {
         if (repo.existsByCorreo(usuario.getCorreo())) {
             throw new DuplicateKeyException("El correo electrónico ya está registrado");
         }
 	}
+
+	
 
 }
