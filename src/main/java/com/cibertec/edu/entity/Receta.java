@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,8 +34,10 @@ public class Receta {
 	private String ingredientes;
 	@Column(name = "preparacion", length = 1000, nullable = false)
 	private String preparacion;
+	@Column(name = "img_rece", length = 100, nullable = false)
+	private String imagen;
 	
-	@ManyToMany(mappedBy = "receta")
+	@OneToMany(mappedBy = "receta")
 	@JsonIgnore
 	private List<Favoritos> listaFavoritos;
 	
@@ -97,5 +100,12 @@ public class Receta {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
 	
 }

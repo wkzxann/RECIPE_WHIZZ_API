@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,7 +35,7 @@ public class Usuario {
 	@Column(name = "clave", length = 200, nullable = false)
 	private String clave;
 	
-	@ManyToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	private List<Favoritos> listaFavoritos;
 	

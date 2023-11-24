@@ -20,7 +20,7 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cod_cate")
 	private Integer codigo;
-	@Column(name = "des_cate")
+	@Column(name = "des_cate", length = 100, nullable = false)
 	private String descripcion;
 	
 	@OneToMany(mappedBy = "categoria")
