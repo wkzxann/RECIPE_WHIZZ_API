@@ -45,5 +45,10 @@ public class RecetaServiceImpl implements com.cibertec.edu.services.RecetaServic
 		return repo.findById(cod).orElse(null);
 	}
 
+	@Override
+	public List<Receta> listarRecetasPorCategoria(int codCate) {
+		return repo.listarRecetasPorCategoria(codCate);
+	}
+
 	
 }

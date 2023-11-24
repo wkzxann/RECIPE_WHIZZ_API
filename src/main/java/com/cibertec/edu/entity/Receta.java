@@ -9,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,24 +19,28 @@ import jakarta.persistence.Table;
 public class Receta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_rece")
+	@Column(name = "cod_rece", nullable = false)
 	private Integer codigo;
-	@Column(name = "nom_rece")
+	@Column(name = "nom_rece", length = 50, nullable = false)
 	private String nombre;
-	@Column(name = "des_rece")
+	@Column(name = "des_rece", length = 800, nullable = false)
 	private String descripcion;
-	@Column(name = "tiempo_pre")
+	@Column(name = "tiempo_pre", length = 15, nullable = false)
 	private String tiempo;
-	@Column(name = "ori_rece")
+	@Column(name = "ori_rece", length = 50, nullable = false)
 	private String origen;
-	@Column(name = "ingredientes")
+	@Column(name = "ingredientes", length = 1000, nullable = false)
 	private String ingredientes;
-	@Column(name = "preparacion")
+	@Column(name = "preparacion", length = 1000, nullable = false)
 	private String preparacion;
 	
 	@ManyToMany(mappedBy = "receta")
 	@JsonIgnore
 	private List<Favoritos> listaFavoritos;
+	
+	@ManyToOne
+	@JoinColumn(name = "cod_cate", nullable = false)
+	private Categoria categoria;
 
 	
 	public Integer getCodigo() {
@@ -79,12 +85,17 @@ public class Receta {
 	public void setPreparacion(String preparacion) {
 		this.preparacion = preparacion;
 	}
-	
-	
-	
-	
-
-	
-	
+	public List<Favoritos> getListaFavoritos() {
+		return listaFavoritos;
+	}
+	public void setListaFavoritos(List<Favoritos> listaFavoritos) {
+		this.listaFavoritos = listaFavoritos;
+	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 }

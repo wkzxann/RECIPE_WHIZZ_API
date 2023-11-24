@@ -15,5 +15,7 @@ public interface RecetaRepository extends JpaRepository<Receta, Integer> {
 			+ "WHERE tb_favoritos.cod_usu = ?1", nativeQuery = true)
 	public List<Receta> listarRecetasFavoritasPorUsuario(Integer cod);
 	
+	@Query("SELECT r FROM Receta r WHERE r.categoria.codigo = ?1")
+	public List<Receta> listarRecetasPorCategoria(int codCate);
 
 }

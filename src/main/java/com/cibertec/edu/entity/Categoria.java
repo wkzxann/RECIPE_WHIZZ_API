@@ -13,45 +13,42 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_rol")
-public class Rol {
+@Table(name = "tb_categoria")
+public class Categoria {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_rol")
-	private Integer codigoRol;
-	@Column(name = "des_rol", length = 70, nullable = false)
+	@Column(name = "cod_cate")
+	private Integer codigo;
+	@Column(name = "des_cate")
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "rol")
+	@OneToMany(mappedBy = "categoria")
 	@JsonIgnore
-	private List<Usuario> listaUsuarios;
-
-	public Integer getCodigoRol() {
-		return codigoRol;
+	private List<Receta> listaRecetas;
+	
+	public Integer getCodigo() {
+		return codigo;
 	}
-
-	public void setCodigoRol(Integer codigoRol) {
-		this.codigoRol = codigoRol;
+	
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
-
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
-
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public List<Usuario> getListaUsuarios() {
-		return listaUsuarios;
-	}
-
-	public void setListaUsuarios(List<Usuario> listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
+	
+	public List<Receta> getListaRecetas() {
+		return listaRecetas;
 	}
 	
+	public void setListaRecetas(List<Receta> listaRecetas) {
+		this.listaRecetas = listaRecetas;
+	}
 	
-	
-
 }

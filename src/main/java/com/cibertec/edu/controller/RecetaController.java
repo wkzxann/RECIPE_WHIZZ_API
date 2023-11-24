@@ -44,6 +44,18 @@ public class RecetaController {
 	    }
 	}
 	
+	@GetMapping("/categoria/{cod}")
+	public ResponseEntity<List<Receta>> listarRecetasPorCategoria(@PathVariable("cod") int codCate) {
+		
+	    List<Receta> recetasCategoria = servicioReceta.listarRecetasPorCategoria(codCate);
+
+	    if (recetasCategoria.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    } else {
+	        return new ResponseEntity<>(recetasCategoria, HttpStatus.OK);
+	    }
+	}
+	
 	@PostMapping("/register")
     public ResponseEntity<?> registrar(@RequestBody Receta receta) {
         try {

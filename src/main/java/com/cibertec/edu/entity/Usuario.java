@@ -23,15 +23,15 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cod_usu")
 	private Integer codido;
-	@Column(name = "nom_usu")
+	@Column(name = "nom_usu", length = 70, nullable = false)
 	private String nombre;
-	@Column(name = "ape_usu")
+	@Column(name = "ape_usu", length = 70, nullable = false)
 	private String apellido;
-	@Column(name = "fec_nac")
+	@Column(name = "fec_nac", nullable = false)
 	private Date fechaNacimiento;
-	@Column(name = "correo")
+	@Column(name = "correo", length = 100, nullable = false)
 	private String correo;
-	@Column(name = "clave")
+	@Column(name = "clave", length = 200, nullable = false)
 	private String clave;
 	
 	@ManyToMany(mappedBy = "usuario")
@@ -39,58 +39,71 @@ public class Usuario {
 	private List<Favoritos> listaFavoritos;
 	
 	@ManyToOne
-	@JoinColumn(name = "cod_rol")
+	@JoinColumn(name = "cod_rol", nullable = false)
 	private Rol rol;
 	
 	public List<Favoritos> getListaFavoritos() {
 		return listaFavoritos;
 	}
+	
 	public void setListaFavoritos(List<Favoritos> listaFavoritos) {
 		this.listaFavoritos = listaFavoritos;
 	}
+	
 	public Rol getRol() {
 		return rol;
 	}
+	
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
+	
 	public Integer getCodido() {
 		return codido;
 	}
+	
 	public void setCodido(Integer codido) {
 		this.codido = codido;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	public String getApellido() {
 		return apellido;
 	}
+	
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+	
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	
 	public String getCorreo() {
 		return correo;
 	}
+	
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	
 	public String getClave() {
 		return clave;
 	}
+	
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
 	
-	
-
 }

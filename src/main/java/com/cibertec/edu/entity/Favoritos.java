@@ -19,11 +19,11 @@ public class Favoritos {
 	private Integer codigo;
 	
 	@ManyToOne
-    @JoinColumn(name = "cod_usu")
+    @JoinColumn(name = "cod_usu", nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "cod_rece")
+    @JoinColumn(name = "cod_rece", nullable = false)
     private Receta receta;
 
 	public Integer getCodigo() {

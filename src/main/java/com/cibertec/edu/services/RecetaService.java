@@ -12,5 +12,6 @@ public interface RecetaService {
 	public Receta actualizar(Receta receta);
 	public void eliminar(Integer cod);
 	public Receta BuscarPorId(Integer cod);
+	public List<Receta> listarRecetasPorCategoria(int codCate);
 
 }
